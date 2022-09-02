@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+        a{
+            text-decoration-line: none;
+            color: palegreen;
+        }
+        .box{
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+            
+        }
+        .item{
+			margin : 0px;
+			border : solid 2px rgb(0, 0, 0); 
+            padding: 15px;
+			height : 50px;
+            width: 130px;   
+            text-align: center;
+            color: blueviolet;
+            font-size: 40px;
+            overflow:auto;
+            -ms-overflow-style: none;
+            
+        }
+         
+        
+</style>
+<script>
+    
+    function Title(){
+        var title = document.getElementById("title1").value;
+        if(document.getElementsByClassName("box").length<11){
+            if (title =="" ){
+                alert("Link Title을 입력하세요");
+            }
+            return title;
+        }
+    }
+        
+    
+    function Src(){
+        var src = document.getElementById("src").value;
+        if (src=="" ){
+            alert("Link Src을 입력하세요");
+            
+        }
+        src = "https://"+src;
+        return src;
+        }
+        
+    
+    function AddLink(title,src){
+        if (title !=""  ){
+            if(src != ""){
+                var source = document.getElementById("box"); 
+                source.innerHTML = source.innerHTML + "<div class='item' id='"+title+"'><a href='"+src+"'>"+title+"</a></div>";
+
+            }
+
+        }
+    }
+    function DeleteLink(title){
+        var big = document.getElementById("box"); 
+        var small = document.getElementById(title); 
+        box.removeChild(big.firstChild);
+        
+    }
+    function Clear(){
+        var source = document.getElementById("box"); 
+        source.remove();
+        var source = document.getElementById("myForm");
+        source.innerHTML= source.innerHTML +" <div class= 'box' id ='box'></div>" 
+    }   
+</script>
+<body>
+    <form id = "myForm" action = "">
+        <p>
+            <label>Link Title:
+            <input id= "title1"type = "text" /> 
+            </label>
+        </p>
+        <p>
+            <label>Link Src:
+            <input id="src" type = "text" /> 
+            </label>
+            
+        </p>
+        <input id = "Add Link"type = "button" value = "Add Link" onclick="AddLink(Title(),Src())"  />
+        <input id = "DeleteLink" type = "button" value = "Delete Link" onclick="DeleteLink(Title())" />
+        <input type = "button" value = "Clear"onclick="Clear()" />
+        <div class='box' id="box">
+
+        </div>
+    </form>
+</body>
+</html>

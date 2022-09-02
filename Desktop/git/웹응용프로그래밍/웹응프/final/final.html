@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form1" method="GET" action="#">
+        <label>이름: </label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label>링크주소: </label>
+        <input type="text" name="link" id="link">
+        <br>
+        <label >분류</label>
+        <input type="text" name="kind" id="kind">
+        <br>
+        <label >대표이미지</label>
+        <input type="text" name="icon" id="lcon">
+        <br>
+        <label >방문횟수</label>
+        <input type='number' value="0" readonly>
+        <br>
+        <input type="button" name="addBtn" id="addBtn" value="즐겨찾기 추가" onclick="addlink()">
+        <div id="print"></div>
+    </form>
+
+</body>
+</html>
+<script type="text/javascript">
+    var linkArr = new Array();
+    var curPage = 0;
+    
+    function addLink()
+    {
+        var data = JSON.stringify({
+                "name": document.forms[0].name.value,
+                "link": document.forms[0].link.value
+                "kind": document.forms[0].kind.value
+                "icon": document.forms[0].icon.value
+                "visit": document.forms[0].visit.value
+            });
+            updateData('POST', data);
+            document.forms[0].reset();
+    }
+    function updateData(method, data) {
+            var requestOptions = {
+                method: method,
+                headers: {'Content-Type': 'application/json'},
+                body: data
+            };
+
+            fetch("http://localhost:3000/bookmarks", requestOptions)
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(error => console.log('error', error));
+
+
+    }
+    linkArr=Array();
+    sentence=Array();
+    result=""
+    function start() {
+            fetch("http://localhost:3000/bookmarks")
+            .then(response => response.json())
+            .then(function(json) {
+                linkArr = json;
+                makeform(linkArr);
+            })
+            .catch(error => console.log('error', error));
+        }
+    function makeform(linkArr)
+        {
+            for(i=0;i<linkArr.length;i++){
+                sentence[i]="<tr>"+linkArr[i].icon+"["+linkArr[i].kind+"]"+"<a href='"+linkArr[i].link+"'>"+linkArr[i].name+"</a>("+linkArr[i].visit+"회 방문)<tr>";
+            }
+            for(i<0;i<sentence.length;i++){
+                result+=sentence[i];
+            }
+            result= "<td>"+result+"<td>";
+            document.getElementById("print").innerHTML=result
+        }

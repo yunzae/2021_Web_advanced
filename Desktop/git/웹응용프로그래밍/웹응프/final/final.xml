@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="final.xsl"?>
+<like>
+   <name>부산대학교</name>
+   <link>www.pusan.ac.kr</link>
+   <kind>대학</kind>
+   <icon src="pusan.png">
+   
+</like>

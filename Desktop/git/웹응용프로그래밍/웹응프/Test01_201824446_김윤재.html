@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>StudendCard</title>
+    <style>
+        .box1{
+            width: 400px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid;
+            box-sizing: border-box;
+            text-align: left;
+            background-color: rgb(114,114,114);
+            color: white;
+        }
+        .box2{
+            margin-left: 15px;
+            width: 360px;
+            height: 30px;
+            border: 1px solid;
+            padding: 5px;
+            padding-left: 30px;
+            box-sizing: border-box;
+            
+        }
+        .box3{
+            width: 380px;
+            height: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+    
+       
+        
+    </style>
+</head>
+
+<body >
+    <div class="box1">
+        학생증 만들기
+    </div>
+    <br>
+    <form action="#" >
+        <!--성명-->
+        <div for="name" class="box3" >
+            이름
+        </div>
+        <br>
+        <input type="text" id="name" name="name" placeholder="이름 입력" style="width: 360px;height: 20px; margin-left: 10px; border: 1px solid;">
+           
+        <br><br>
+        <!--학번-->
+        <div for="number" class="box3" >
+            학번
+        </div>
+        <br>
+        <input type="text" id="number" name="email1" placeholder="학번 입력" style="width: 360px;height: 20px; margin-left: 10px; border: 1px solid;">
+        <br>
+        <br>
+        <!--학년-->
+        <div for="grade" class="box3">
+            학년
+        </div>
+        <br>
+        <input type="text" id="email1" name="email1" placeholder="학년 입력" style="width: 360px;height: 20px; margin-left: 10px; border: 1px solid;">
+        <br>
+        <br>
+        <!--상태-->
+        <div for="grade" class="box3">
+            상태
+        </div>
+        <input list="lili" id="now" name="now" style="width: 360px;height: 20px; margin: 5px; border: 1px solid;display: block;">
+        <datalist id="lili">
+            <option value="재학">
+                재학
+            </option>
+            <option value="휴학">
+                휴학
+            </option>
+            <option value="수료">
+                수료
+            </option>
+            <option value="졸업">
+                졸업
+            </option>
+            <option value="제적">
+                제적
+            </option>
+        </datalist>
+        <!--생년월일-->
+        <div for="birth" class="box3">
+            <p>생년월일</p>
+        </div>
+        <input type="date" style="width: 380px;height: 30px; margin: 5px; border: 1px solid;display: block;">
+        <!--학년-->
+        <div for="grade" class="box3">
+            소속 학과
+        </div>
+        <br>
+        <input type="text" id="gwa" name="gwa" placeholder="학과 입력" style="width: 360px;height: 20px; margin-left: 10px; border: 1px solid;">
+        <br>
+        <br>
+        <br>
+        <br><br>
+        
+        <!--확인 취소-->
+            <input type="submit" value="학생증 출력" 
+            style="
+            width: 170px;
+            height: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: rgb(114, 114, 114);
+            color: white;">
+
+            <input type="reset" value="초기화" 
+            style="
+            width: 170px;
+            height: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: rgb(114,114,114);
+            color: white;">
+    </form>
+</body>
+</html>

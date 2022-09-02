@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+        a{
+            text-decoration-line: none;
+            color: palegreen;
+        }
+        .box{
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+            
+        }
+        .item{
+			margin : 0px;
+			border : solid 2px rgb(0, 0, 0); 
+            padding: 15px;
+			height : 50px;
+            width: 130px;   
+            text-align: center;
+            color: blueviolet;
+            font-size: 40px;
+            overflow:auto;
+            -ms-overflow-style: none;
+            
+        }
+         
+        
+</style>
+<script>
+    var array_title = new Array();
+    var array_src = new Array();
+    var sortedtitle = new Array();
+    var sortedsrc= new Array();
+
+    function add(){
+        var title = document.getElementById("title1").value;
+        var src = document.getElementById("src").value;
+        for(var i=0;i<array_title.length;i++){
+            if (title == array_title[i]){
+                    alert("이미 존재하는 Title입니다!")
+                    return 0;
+            }
+        }
+        if(title ==""){
+            alert("Link Title을 입력하세요");
+            return 0;
+        }
+        if(src ==""){
+            alert("Link Src을 입력하세요");
+            return 0;
+        }
+        if(array_title.length>9){
+            alert("추가 할수 있는 요소의 최대 개수는 10개입니다!")
+            return 0;
+        }
+        if(array_src.length>9){
+            alert("추가 할수 있는 요소의 최대 개수는 10개입니다!")
+            return 0;
+        }
+        src = "https://"+src;
+        array_src.push(src);
+        array_title.push(title);       
+    }
+
+
+    function view(){
+        document.getElementById("title1").value = "";
+        document.getElementById("src").value = "";
+        var source = document.getElementById("box");
+        var result="";
+        for(var i=0;i<array_title.length;i++){
+            result = result + "<div class='item'  id='lin'><a href='"+sortedsrc[i]+"'target='frame'>"+sortedtitle[i]+"</a></div>";
+        }
+        source.innerHTML =  result;
+    }
+
+    function deletelink(){
+        var title = document.getElementById("title1").value;
+        for(var i=0;i<array_title.length;i++){
+            if(title == array_title[i]){
+                array_title.splice(i,1);
+                array_src.splice(i,1);
+                i--;
+            }
+        } 
+    }
+    function sorting(){
+        for(var i=0;i<array_title.length;i++){
+
+            sortedsrc.push();
+        }
+        sortedtitle = array_title.sort();
+        for (var i=0;i<array_title.length;i++){
+            for( var j=0;i<array_title.length;i++){
+                if(sortedtitle[i] == array_title[j]){
+                    sortedsrc[i] = array_src[j];
+                }
+            }
+        }
+    }
+
+    function Clear(){
+        array_title.splice(0,array_title.length);
+        array_src.splice(0,array_src.length);
+    }   
+</script>
+<body>
+    <form id = "myForm" action = "">
+            <iframe style="float:right;" src="URL" name="frame"></iframe>
+        <p></p>
+            <label>즐겨찾기 제목:
+            <input id= "title1"type = "text" /> 
+            </label>
+        </p>
+        <p>
+            <label>즐겨찾기 링크:
+            <input id="src" type = "text" /> 
+            </label>
+            
+        </p>
+        <input id = "Add Link"type = "button" value = "즐겨찾기 추가" onclick="add(),sorting(),view()"  />
+        <input id = "DeleteLink" type = "button" value = "즐겨찾기 삭제" onclick="deletelink(),sorting(),view()" />
+        <input type = "button" value = "모두삭제"onclick="Clear(),sorting(),view()" />
+        <div class='box' id="box">
+
+        </div>
+
+    </form>
+</body>
+</html>

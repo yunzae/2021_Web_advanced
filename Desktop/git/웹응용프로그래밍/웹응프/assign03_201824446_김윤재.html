@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+        a{
+            text-decoration-line: none;
+            color: palegreen;
+        }
+        .box{
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+            
+        }
+        .item{
+			margin : 0px;
+			border : solid 2px rgb(0, 0, 0); 
+            padding: 15px;
+			height : 50px;
+            width: 130px;   
+            text-align: center;
+            color: blueviolet;
+            font-size: 40px;
+            overflow:auto;
+            -ms-overflow-style: none;
+            
+        }
+         
+        
+</style>
+<script>
+    var array_title = new Array();
+    var array_src = new Array();
+
+    function add(){
+        var title = document.getElementById("title1").value;
+        var src = document.getElementById("src").value;
+        for(var i=0;i<array_title.length;i++){
+            if (title == array_title[i]){
+                    alert("이미 존재하는 Title입니다!")
+                    return 0;
+            }
+        }
+        if(title ==""){
+            alert("Link Title을 입력하세요");
+            return 0;
+        }
+        if(src ==""){
+            alert("Link Src을 입력하세요");
+            return 0;
+        }
+        if(array_title.length>9){
+            alert("추가 할수 있는 요소의 최대 개수는 10개입니다!")
+            return 0;
+        }
+        if(array_src.length>9){
+            alert("추가 할수 있는 요소의 최대 개수는 10개입니다!")
+            return 0;
+        }
+        src = "https://"+src;
+        array_src.push(src);
+        array_title.push(title);       
+    }
+
+
+    function view(){
+        document.getElementById("title1").value = "";
+        document.getElementById("src").value = "";
+        var source = document.getElementById("box");
+        var result="";
+        for(var i=0;i<array_title.length;i++){
+            result = result + "<div class='item' id=''><a href='"+array_src[i]+"'>"+array_title[i]+"</a></div>";
+        }
+        source.innerHTML =  result;
+    }
+
+    function deletelink(){
+        var title = document.getElementById("title1").value;
+        for(var i=0;i<array_title.length;i++){
+            if(title == array_title[i]){
+                array_title.splice(i,1);
+                array_src.splice(i,1);
+                i--;
+            }
+        } 
+    }
+    function Clear(){
+        array_title.splice(0,array_title.length);
+        array_src.splice(0,array_src.length);
+    }   
+</script>
+<body>
+    <form id = "myForm" action = "">
+        <p>
+            <label>Link Title:
+            <input id= "title1"type = "text" /> 
+            </label>
+        </p>
+        <p>
+            <label>Link Src:
+            <input id="src" type = "text" /> 
+            </label>
+            
+        </p>
+        <input id = "Add Link"type = "button" value = "Add Link" onclick="add(),view()"  />
+        <input id = "DeleteLink" type = "button" value = "Delete Link" onclick="deletelink(),view()" />
+        <input type = "button" value = "clear"onclick="Clear(),view()" />
+        <div class='box' id="box">
+
+        </div>
+    </form>
+</body>
+</html>
